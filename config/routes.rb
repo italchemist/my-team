@@ -1,12 +1,19 @@
 MyTeam::Application.routes.draw do
   namespace "api" do
-    resources "teams"
+    resources "teams" do
+      resources "tasks"
+    end
   end
 
   match 'teams' => 'welcome#index'
   match 'teams/:id' => 'welcome#index'
   match 'teams/:id/edit' => 'welcome#index'
   match 'teams/:id/new' => 'welcome#index'
+
+  match 'teams/:team_id/tasks' => 'welcome#index'
+  match 'teams/:team_id/tasks/:id' => 'welcome#index'
+  match 'teams/:team_id/tasks/:id/edit' => 'welcome#index'
+  match 'teams/:team_id/tasks/new' => 'welcome#index'
 
   root :to => 'welcome#index'
 

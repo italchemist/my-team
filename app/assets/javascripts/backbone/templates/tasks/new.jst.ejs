@@ -1,0 +1,27 @@
+<form id="new-task" name="task" class="form-horizontal">
+  <fieldset>
+    <legend>Создание задачи</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="title">Заголовок</label>
+      <div class="controls">
+        <input type="text" id="title" name="title" placeholder="Заголовок задачи" value="<%= title %>">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="description">Описание</label>
+      <div class="controls">
+        <textarea type="text" id="description" name="description" placeholder="Описание задачи"><%= description %></textarea>
+      </div>
+    </div>    
+
+    <div class="control-group">
+      <div class="controls">
+        <a href="/teams/<%=team_id%>/tasks" class="btn btn-danger">Отмена</a>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>

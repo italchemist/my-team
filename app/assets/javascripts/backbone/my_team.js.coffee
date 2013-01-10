@@ -10,10 +10,14 @@ window.MyTeam =
   Routers: {}
   Views: {}
   initialize: (party_id, activities, parties) ->
-    teams = $("#page").data("teams")
+    team_id = $("#page").data("team-id")
+    teams   = $("#page").data("teams")
+    tasks   = $("#page").data("tasks")
 
     new MyTeam.Routers.WelcomeRouter()
     new MyTeam.Routers.TeamsRouter({collection: teams})
+    new MyTeam.Routers.TasksRouter({team_id: team_id, tasks: tasks})
+    
     Backbone.history.start(pushState: true)
 
 $(document).ready ->

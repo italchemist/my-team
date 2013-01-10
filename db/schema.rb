@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110091651) do
+ActiveRecord::Schema.define(:version => 20130110113400) do
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "team_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tasks", ["team_id"], :name => "index_tasks_on_team_id"
 
   create_table "teams", :force => true do |t|
     t.string "name"
