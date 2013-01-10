@@ -12,4 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/my_team
 //= require_tree .
+
+$(function() {
+  $("a.btn").live("click", function(e) {
+    e.preventDefault();
+    Backbone.history.navigate($(this).attr("href"), true);
+  });
+
+  $("a.lnk").live("click", function(e) {
+    e.preventDefault();
+    Backbone.history.navigate($(this).attr("href"), true);
+  });  
+});

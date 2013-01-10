@@ -1,4 +1,16 @@
 MyTeam::Application.routes.draw do
+  namespace "api" do
+    resources "teams"
+  end
+
+  match 'teams' => 'welcome#index'
+  match 'teams/:id' => 'welcome#index'
+  match 'teams/:id/edit' => 'welcome#index'
+  match 'teams/:id/new' => 'welcome#index'
+
+  root :to => 'welcome#index'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
