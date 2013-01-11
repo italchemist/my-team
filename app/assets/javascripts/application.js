@@ -23,7 +23,10 @@
 $(function() {
   $("a.btn").live("click", function(e) {
     e.preventDefault();
-    Backbone.history.navigate($(this).attr("href"), true);
+    href = $(this).attr("href");
+    if (href != "#") {
+    	Backbone.history.navigate(href, true);
+    }
   });
 
   $("a.lnk").live("click", function(e) {
