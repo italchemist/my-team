@@ -1,14 +1,18 @@
 class MyTeam.Routers.TeamsRouter extends Backbone.Router
-  initialize: (options) ->
-    @teams = new MyTeam.Collections.TeamsCollection()
-    @teams.reset options.collection
-
   routes:
     "teams/new"      : "create"
     "teams/index"    : "index"
     "teams/:id/edit" : "edit"
     "teams/:id"      : "show"
     "teams"          : "index"
+
+  initialize: (options) ->
+    @teams = new MyTeam.Collections.TeamsCollection()
+    @teams.reset options.collection
+    @on("all", @change)
+
+  change: (route, team_id) ->
+    MyTeam.Helpers.MenuHelper.toggle_team_menus(team_id?, team_id)
 
   index: ->
     @view = new MyTeam.Views.Teams.IndexView(teams: @teams)

@@ -1,15 +1,19 @@
 class MyTeam.Routers.TasksRouter extends Backbone.Router
-  initialize: (options) ->
-    @tasks = {}
-    @tasks[options.team_id] = new MyTeam.Collections.TasksCollection(null, {team_id:options.team_id})
-    @tasks[options.team_id].reset options.tasks
-
   routes:
     "teams/:team_id/tasks/new"      : "create"
     "teams/:team_id/tasks/index"    : "index"
     "teams/:team_id/tasks/:id/edit" : "edit"
     "teams/:team_id/tasks/:id"      : "show"
     "teams/:team_id/tasks"          : "index"
+
+  initialize: (options) ->
+    @tasks = {}
+    @tasks[options.team_id] = new MyTeam.Collections.TasksCollection(null, {team_id:options.team_id})
+    @tasks[options.team_id].reset options.tasks
+    @on("all", @change)
+
+  change: (route, team_id) ->
+    MyTeam.Helpers.MenuHelper.toggle_team_menus(true, team_id)
 
   index: (team_id) ->
     @view = new MyTeam.Views.Tasks.IndexView({tasks: @collection(team_id), team_id: team_id})

@@ -3,12 +3,14 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require_tree ./helpers
 
 window.MyTeam =
   Models: {}
   Collections: {}
   Routers: {}
   Views: {}
+  Helpers: {}
   initialize: (party_id, activities, parties) ->
     team_id = $("#page").data("team-id")
     teams   = $("#page").data("teams")
