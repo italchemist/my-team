@@ -9,6 +9,7 @@ class MyTeam.Routers.TeamsRouter extends Backbone.Router
   initialize: (options) ->
     @app  = MyTeam
     @menu = MyTeam.Helpers.MenuHelper
+    @view = MyTeam.Helpers.ViewHelper
     @page = $("#page")
     @on("all", @change)
 
@@ -17,6 +18,7 @@ class MyTeam.Routers.TeamsRouter extends Backbone.Router
 
   index: ->
     @render new MyTeam.Views.Teams.IndexView(teams: @app.get_teams())
+    @view.fix_thumbnails()
 
   create: ->
     @render new MyTeam.Views.Teams.NewView(collection: @app.get_teams())

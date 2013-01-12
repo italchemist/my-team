@@ -3,13 +3,14 @@ class MyTeam.Routers.UsersRouter extends Backbone.Router
     "users/sign_up": "sign_up"
     "users/sign_in": "sign_in"
 
-  initialize: () ->
+  initialize: ->
+    @menu  = MyTeam.Helpers.MenuHelper
     @users = new MyTeam.Collections.UsersCollection()
     @page  = $("#page")
     @on("all", @change)
 
   change: ->
-    MyTeam.Helpers.MenuHelper.toggle_team_menus(false)
+    @menu.toggle_team_menus(false)
 
   sign_up: ->
     @render new MyTeam.Views.Users.SignUpView(collection: @users)

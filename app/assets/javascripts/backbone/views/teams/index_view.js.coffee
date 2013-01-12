@@ -14,7 +14,6 @@ class MyTeam.Views.Teams.IndexView extends Backbone.View
     @$("#teams-list").append(view.render().el)
 
   render: =>
-    @$el.html(@template(teams: @options.teams.toJSON() ))
+    @$el.html(@template(teams: @options.teams.toJSON()))
     @addAll()
-
     return this
