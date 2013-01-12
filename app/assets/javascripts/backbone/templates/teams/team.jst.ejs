@@ -1,5 +1,8 @@
 <a href="/teams/<%=id%>" class="lnk">
-  <div class="thumbnail">
+  <div class="thumbnail" style="position:relative">
     <img src="http://lorempixel.com/400/200/<%=['abstract', 'food', 'people', 'technics', 'anials', 'nightmare', 'nature', 'transport', 'city', 'fashion', 'sports'][Math.floor(11*Math.random())]%>/<%=Math.round(Math.random()*10)%>" width="400" height="200"/>
+    <div class="team-thumbnail-name">
+    	<%=name%>
+    </div>
   </div>
 </a>
