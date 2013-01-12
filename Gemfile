@@ -26,5 +26,6 @@ gem "holder_rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 
+gem "devise"
 gem "draper"
 gem "inherited_resources"

@@ -33,4 +33,11 @@ $(function() {
     e.preventDefault();
     Backbone.history.navigate($(this).attr("href"), true);
   });  
+
+  $("#menu-users-signout").live("click", function(e) {
+    e.preventDefault();
+    $.ajax({url:$(this).attr("href"), type:"delete"});
+    MyTeam.Helpers.MenuHelper.toggle_user_authenicated(false)
+    Backbone.history.navigate("/", true);
+  });
 });

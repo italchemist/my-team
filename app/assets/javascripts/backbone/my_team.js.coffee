@@ -17,6 +17,7 @@ window.MyTeam =
     tasks   = $("#page").data("tasks")
 
     new MyTeam.Routers.WelcomeRouter()
+    new MyTeam.Routers.UsersRouter()
     new MyTeam.Routers.TeamsRouter({collection: teams})
     new MyTeam.Routers.TasksRouter({team_id: team_id, tasks: tasks})
     

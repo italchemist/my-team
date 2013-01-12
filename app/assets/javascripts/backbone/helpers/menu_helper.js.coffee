@@ -10,4 +10,7 @@ class MyTeam.Helpers.MenuHelper
     $("#menu-tasks-list").attr("href", "/teams/#{team_id}/tasks")
     $("#menu-tasks-new").attr("href", "/teams/#{team_id}/tasks/new")
 
-    
+  @toggle_user_authenicated: (value) ->
+  	$("#menu-users-signin").toggle(!value)
+  	$("#menu-users-signup").toggle(!value)
+  	$("#menu-users-signout").toggle(value)

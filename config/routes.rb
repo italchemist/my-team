@@ -1,9 +1,18 @@
 MyTeam::Application.routes.draw do
+  #devise_for :users
+  devise_for :users, :path => '/api/users',
+    :controllers => {:sessions => 'sessions', :registrations => "registrations"}
+  #, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+
   namespace "api" do
+    #devise_for :users
     resources "teams" do
       resources "tasks"
     end
   end
+
+  match 'users/sign_up' => 'welcome#index'
+  match 'users/sign_in' => 'welcome#index'
 
   match 'teams' => 'welcome#index'
   match 'teams/:id' => 'welcome#index'
