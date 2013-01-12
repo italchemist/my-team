@@ -21,13 +21,15 @@ window.MyTeam =
     teams   = $("#page").data("teams")
     tasks   = $("#page").data("tasks")
 
+    new MyTeam.Routers.TasksRouter
     new MyTeam.Routers.WelcomeRouter()
     new MyTeam.Routers.UsersRouter()
     new MyTeam.Routers.TeamsRouter({collection: teams})
-    new MyTeam.Routers.TasksRouter
+    
     
     Backbone.history.start(pushState: true)
 
+  # returns task collection for specified team id
   get_tasks: (team_id, async = true) ->
     collection = @tasks[team_id]
     unless collection?

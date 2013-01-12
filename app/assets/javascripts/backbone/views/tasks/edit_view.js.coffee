@@ -10,15 +10,14 @@ class MyTeam.Views.Tasks.EditView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
 
+    @team_id = @model.get("team_id")
     @model.save(null,
       success: (task) =>
         @model = task
-        Backbone.history.navigate("/teams/#{@options.team_id}/tasks", true);
+        Backbone.history.navigate("/teams/#{@team_id}/tasks", true);
     )
 
   render: ->
     @$el.html(@template(@model.toJSON()))
-
-    this.$("form").backboneLink(@model)
-
+    @$("form").backboneLink(@model)
     return this
