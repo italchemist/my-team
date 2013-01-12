@@ -18,16 +18,18 @@ window.MyTeam =
     @tasks[@team_id] = new MyTeam.Collections.TasksCollection(null, {team_id: @team_id})
     @tasks[@team_id].reset $("#page").data("tasks")
 
-    teams   = $("#page").data("teams")
-    tasks   = $("#page").data("tasks")
+    @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
 
+    new MyTeam.Routers.TeamsRouter
     new MyTeam.Routers.TasksRouter
-    new MyTeam.Routers.WelcomeRouter()
-    new MyTeam.Routers.UsersRouter()
-    new MyTeam.Routers.TeamsRouter({collection: teams})
-    
+    new MyTeam.Routers.WelcomeRouter
+    new MyTeam.Routers.UsersRouter
     
     Backbone.history.start(pushState: true)
+
+  # returns teams collection
+  get_teams: () ->
+    @teams
 
   # returns task collection for specified team id
   get_tasks: (team_id, async = true) ->

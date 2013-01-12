@@ -4,7 +4,7 @@ class MyTeam.Views.Teams.IndexView extends Backbone.View
   template: JST["backbone/templates/teams/index"]
 
   initialize: () ->
-    @options.teams.bind('reset', @addAll)
+    @options.teams.bind("reset", @addAll)
 
   addAll: () =>
     @options.teams.each(@addOne)

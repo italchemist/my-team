@@ -1,33 +1,33 @@
 class MyTeam.Routers.TeamsRouter extends Backbone.Router
   routes:
-    "teams/new"      : "create"
-    "teams/index"    : "index"
-    "teams/:id/edit" : "edit"
-    "teams/:id"      : "show"
-    "teams"          : "index"
+    "teams/index"   : "index"
+    "teams/new"     : "create"
+    "teams/:id/edit": "edit"
+    "teams/:id"     : "show"
+    "teams"         : "index"
 
   initialize: (options) ->
-    @teams = new MyTeam.Collections.TeamsCollection()
-    @teams.reset options.collection
+    @app  = MyTeam
+    @menu = MyTeam.Helpers.MenuHelper
+    @page = $("#page")
     @on("all", @change)
 
   change: (route, team_id) ->
-    MyTeam.Helpers.MenuHelper.toggle_team_menus(team_id?, team_id)
+    @menu.toggle_team_menus(team_id?, team_id)
 
   index: ->
-    @view = new MyTeam.Views.Teams.IndexView(teams: @teams)
-    $("#page").html(@view.render().el)
-
-  show: (id) ->
-    team = @teams.get(id)
-    @view = new MyTeam.Views.Teams.ShowView(model: team)
-    $("#page").html(@view.render().el)
+    @render new MyTeam.Views.Teams.IndexView(teams: @app.get_teams())
 
   create: ->
-    @view = new MyTeam.Views.Teams.NewView(collection: @teams)
-    $("#page").html(@view.render().el)
+    @render new MyTeam.Views.Teams.NewView(collection: @app.get_teams())
 
   edit: (id) ->
-    team = @teams.get(id)
-    @view = new MyTeam.Views.Teams.EditView(model: team)
-    $("#page").html(@view.render().el)
+    team = @app.get_teams().get(id)
+    @render new MyTeam.Views.Teams.EditView(model: team)
+
+  show: (id) ->
+    team = @app.get_teams().get(id)
+    @render new MyTeam.Views.Teams.ShowView(model: team)
+
+  render: (view) ->
+    @page.html(view.render().el)

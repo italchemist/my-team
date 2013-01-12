@@ -4,12 +4,12 @@ class MyTeam.Views.Teams.ShowView extends Backbone.View
   template: JST["backbone/templates/teams/show"]
 
   render: ->
+    app     = MyTeam
     team_id = @model.get("id")
-    tasks   = MyTeam.get_tasks(team_id)
-    view    = new MyTeam.Views.Tasks.IndexView({tasks: tasks, team_id: team_id})
+    tasks   = app.get_tasks(team_id)
+    view    = new MyTeam.Views.Tasks.IndexView(tasks: tasks)
     
     @$el.html(@template({team:@model.toJSON()}))
     @$("#tasks").append(view.render().el)
-    #@$el.append(view.render().el)
 
     return this
