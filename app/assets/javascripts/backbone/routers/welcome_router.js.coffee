@@ -1,14 +1,18 @@
 class MyTeam.Routers.WelcomeRouter extends Backbone.Router
   routes:
-    ""  : "index"
-    "/" : "index"
+    "" : "index"
+    "/": "index"
 
   initialize: () ->
+    @menu = MyTeam.Helpers.MenuHelper
+    @page = $("#page")
     @on("all", @change)
 
   change: (route) ->
-    MyTeam.Helpers.MenuHelper.toggle_team_menus(false)
+    @menu.toggle_team_menus(false)
 
   index: ->
-    @view = new MyTeam.Views.Welcome.IndexView()
-    $("#page").html(@view.render().el)
+    @render new MyTeam.Views.Welcome.IndexView()
+
+  render: (view) ->
+    @page.html(view.render().el)
