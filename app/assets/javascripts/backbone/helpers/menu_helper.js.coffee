@@ -7,10 +7,13 @@ class MyTeam.Helpers.MenuHelper
     else
       $("#menu-main-button-title").html("Команды")
 
-    $("#menu-main-index").toggle(show)
-    $("#menu-main-index-separator").toggle(show)
-    $("#menu-main-index").attr("href", "/teams/#{team_id}")
 
+    $("#menu-main-index").toggle(show)
+    $("#menu-main-edit").toggle(show)
+    $("#menu-main-index").attr("href", "/teams/#{team_id}")
+    $("#menu-main-edit").attr("href", "/teams/#{team_id}/edit")
+    $("#menu-main-index-separator").toggle(show)
+    
     # Tasks menu for team
     $("#menu-tasks").toggle(show)
     $("#menu-tasks-list").attr("href", "/teams/#{team_id}/tasks")
