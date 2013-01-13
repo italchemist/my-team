@@ -10,11 +10,11 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    respond_with Task.where(:team_id => params[:team_id]).create(params[:task].slice(:title, :description))
+    respond_with Task.where(:team_id => params[:team_id]).create(params[:task].slice(:title, :description, :closed))
   end
 
   def update
-    respond_with Task.where(:team_id => params[:team_id]).update(params[:id], params[:task].slice(:title, :description))
+    respond_with Task.where(:team_id => params[:team_id]).update(params[:id], params[:task].slice(:title, :description, :closed))
   end
 
   def destroy

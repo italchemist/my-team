@@ -4,6 +4,7 @@ class MyTeam.Models.Task extends Backbone.Model
   defaults:
     title: null
     description: null
+    closed: null
 
 class MyTeam.Collections.TasksCollection extends Backbone.Collection
   model: MyTeam.Models.Task

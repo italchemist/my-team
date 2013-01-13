@@ -11,6 +11,8 @@ class MyTeam.Views.Tasks.EditView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
 
+    @model.set("closed", @$("#closed").is(":checked"))
+
     @team_id = @model.get("team_id")
     @model.save(null,
       success: (task) =>
