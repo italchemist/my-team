@@ -1,9 +1,14 @@
 <legend>Задачи</legend>
 
 <table id="tasks-table" class="table table-striped">
+  <% if (show_header) { %>
   <tr>
     <th>Задача</th>
-    <th>Описание</th>
-    <th></th>
+    <% if (show_description_as == "column") { %>
+    	<th>Описание</th>
+    <% } %>
   </tr>
+  <% } else { %>
+  	<tbody></tbody>
+  <% } %>
 </table>

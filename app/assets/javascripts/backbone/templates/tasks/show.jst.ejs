@@ -1,12 +1,21 @@
-<p>
-  <b>Title:</b>
+<legend>
   <%= title %>
-</p>
+  <div class="btn-group" style="float:right">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Действия <span class="caret"></span>
+    </a>
+
+    <a href="/teams/<%=team_id%>/tasks" class="btn">Назад</a>
+    
+    <ul class="dropdown-menu">
+      <li><a href="/teams/<%= team_id %>/tasks/<%= id %>/edit" class="lnk">Редактировать</a></li>
+      <li><a href="/teams/<%= team_id %>/tasks/<%= id %>/destroy" class="destroy">Удалить</a></li>
+    </ul>
+  </div>
+</legend>
 
 <p>
-  <b>Description:</b>
   <%= description %>
 </p>
 
 
-<a href="/teams/<%=team_id%>/tasks" class="btn">Back</a>

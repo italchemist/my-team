@@ -7,7 +7,7 @@ class MyTeam.Views.Teams.ShowView extends Backbone.View
     app     = MyTeam
     team_id = @model.get("id")
     tasks   = app.get_tasks(team_id)
-    view    = new MyTeam.Views.Tasks.IndexView(tasks: tasks)
+    view    = new MyTeam.Views.Tasks.IndexView({tasks: tasks, show_header: false, show_description_as: "popover"})
     
     @$el.html(@template({team:@model.toJSON()}))
     @$("#tasks").append(view.render().el)

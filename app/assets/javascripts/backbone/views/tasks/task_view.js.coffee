@@ -8,12 +8,17 @@ class MyTeam.Views.Tasks.TaskView extends Backbone.View
 
   tagName: "tr"
 
+  initialize: () ->
+    @options.show_description_as = "column" unless @options.show_description_as?
+
   destroy: () ->
     @model.destroy()
     this.remove()
-
     return false
 
   render: ->
-    @$el.html(@template(@model.toJSON() ))
+    @$el.html(@template({
+      model: @model.toJSON(),
+      show_description_as: @options.show_description_as
+    }))
     return this

@@ -1,15 +1,7 @@
-<td><%= title %></td>
-<td><%= description %></td>
-
-<td style="width:100px">
-  <div class="btn-group" style="float:right">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      Действия <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="/teams/<%= team_id %>/tasks/<%= id %>" class="lnk">Просмотр</a></li>
-      <li><a href="/teams/<%= team_id %>/tasks/<%= id %>/edit" class="lnk">Редактировать</a></li>
-      <li><a href="/teams/<%= team_id %>/tasks/<%= id %>/destroy" class="destroy">Удалить</a></li>
-    </ul>
-  </div>
+<td>
+  <a href="/teams/<%=model.team_id%>/tasks/<%=model.id%>" class="lnk"><%= model.title %></a>
 </td>
+
+<% if (show_description_as == "column") { %>
+  <td><%= model.description %></td>
+<% } %>
