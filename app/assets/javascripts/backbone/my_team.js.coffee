@@ -27,6 +27,15 @@ window.MyTeam =
     
     Backbone.history.start(pushState: true)
 
+  get_team: (team_id) ->
+    team = @teams.get(team_id)
+    unless team?
+      team = new MyTeam.Models.Team()
+      team.url = "/api/teams/#{team_id}"
+      team.fetch({async:false})
+      get_teams().add(team)
+    team
+
   # returns teams collection
   get_teams: () ->
     @teams

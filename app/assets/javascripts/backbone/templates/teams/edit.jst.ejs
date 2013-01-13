@@ -10,8 +10,15 @@
     </div>
 
     <div class="control-group">
+      <label class="control-label" for="description">Описание</label>
       <div class="controls">
-		    <a href="/teams" class="btn btn-danger">Отмена</a>
+        <textarea id="description" name="description" placeholder="Введите описание команды"><%= description %></textarea>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+		    <a href="#" class="btn btn-danger bck">Отмена</a>
         <button type="submit" class="btn btn-primary">Сохранить</button>
       </div>
     </div>

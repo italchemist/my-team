@@ -10,11 +10,11 @@ class Api::TeamsController < ApplicationController
   end
 
   def create
-    respond_with Team.create(params[:team].slice(:name))
+    respond_with Team.create(params[:team].slice(:name, :description))
   end
 
   def update
-    respond_with Team.update(params[:id], params[:team].slice(:name))
+    respond_with Team.update(params[:id], params[:team].slice(:name, :description))
   end
 
   def destroy

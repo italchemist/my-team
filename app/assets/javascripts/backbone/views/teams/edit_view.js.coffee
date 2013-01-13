@@ -12,13 +12,12 @@ class MyTeam.Views.Teams.EditView extends Backbone.View
 
     @model.save(null,
       success: (team) =>
-        @model = team
-        Backbone.history.navigate("/teams", true);
+        @team_id = team.get("id")
+        @model   = team
+        Backbone.history.navigate("/teams/#{@team_id}", true);
     )
 
   render: ->
     @$el.html(@template(@model.toJSON() ))
-
-    this.$("form").backboneLink(@model)
-
+    @$("form").backboneLink(@model)
     return this

@@ -3,6 +3,7 @@ class MyTeam.Models.Team extends Backbone.Model
 
   defaults:
     name: null
+    description: null
 
 class MyTeam.Collections.TeamsCollection extends Backbone.Collection
   model: MyTeam.Models.Team
