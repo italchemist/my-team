@@ -27,3 +27,8 @@
  	font-size:32px;
  	color:white
 }
+
+.controls>textarea {
+	width:500px;
+	height:250px;
+}

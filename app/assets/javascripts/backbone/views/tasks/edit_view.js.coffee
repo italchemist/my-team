@@ -5,6 +5,7 @@ class MyTeam.Views.Tasks.EditView extends Backbone.View
 
   events:
     "submit #edit-task": "update"
+    "click #save"      : "update"
 
   update: (e) ->
     e.preventDefault()
@@ -14,7 +15,8 @@ class MyTeam.Views.Tasks.EditView extends Backbone.View
     @model.save(null,
       success: (task) =>
         @model = task
-        Backbone.history.navigate("/teams/#{@team_id}/tasks", true);
+        Backbone.history.navigate("/teams/#{@team_id}/tasks", true)
+        MyTeam.Helpers.NoticeHelper.success("Задача", "Задача сохранена")
     )
 
   render: ->

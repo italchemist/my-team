@@ -35,7 +35,11 @@ $(function() {
   $("a.lnk").live("click", function(e) {
     e.preventDefault();
     Backbone.history.navigate($(this).attr("href"), true);
-  });  
+  });
+
+  $("a.bck").live("click", function(e) {
+    history.back();
+  });
 
   $("#menu-users-signout").live("click", function(e) {
     e.preventDefault();

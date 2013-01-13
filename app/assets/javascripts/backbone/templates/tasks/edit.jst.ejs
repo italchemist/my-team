@@ -1,6 +1,21 @@
 <form id="edit-task" name="task" class="form-horizontal">
   <fieldset>
-    <legend>Редактирование задачи</legend>
+    <legend>
+      <%= title %>
+
+      <div class="btn-group" style="float:right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Действия <span class="caret"></span>
+        </a>
+        <a href="#" class="btn bck">Отмена</a>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="lnk" id="save">Сохранить</a></li>
+          <li><a href="/teams/<%= team_id %>/tasks/<%= id %>" class="lnk">Просмотр</a></li>
+          <li><a href="/teams/<%= team_id %>/tasks/<%= id %>/destroy" class="destroy">Удалить</a></li>
+        </ul>
+      </div>
+    </legend>
+
     
     <div class="control-group">
       <label class="control-label" for="title">Заголовок</label>
@@ -18,7 +33,7 @@
 
     <div class="control-group">
       <div class="controls">
-        <a href="/teams/<%=team_id%>" class="btn btn-danger">Отмена</a>
+        <a href="#" class="btn bck">Отмена</a>
         <button type="submit" class="btn btn-primary">Сохранить</button>
       </div>
     </div>
