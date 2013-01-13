@@ -8,11 +8,10 @@ group :assets do
   gem "therubyracer", "0.10.2", :platforms => :ruby
   gem "twitter-bootstrap-rails"
   gem "uglifier", ">= 1.0.3"
-  gem "uglifier", ">= 1.0.3"
 end
 
 group :production do
-  gem "mysql", "2.8.1"
+  gem "mysql2"
   gem "unicorn"
 end
 
