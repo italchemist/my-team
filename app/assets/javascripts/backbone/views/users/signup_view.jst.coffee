@@ -9,23 +9,24 @@ class MyTeam.Views.Users.SignUpView extends Backbone.View
   constructor: (options) ->
     super(options)
     @model = new @collection.model()
-
-    @model.bind("change:errors", () =>
-      this.render()
-    )
+    @model.bind("change:errors", () => this.render())
 
   save: (e) ->
     e.preventDefault()
     e.stopPropagation()
     @model.unset("errors")
     
-    $.post('/api/users', {user: @model.toJSON()}, (resp) ->
-      MyTeam.Helpers.MenuHelper.toggle_user_authenicated(resp.id)
-      if (resp.id)
+    $.ajax "/api/users",
+      contentType: "application/json"
+      dataType: "json"
+      type: "POST"
+      data: JSON.stringify(user: @model.toJSON())
+      success: (response) ->
+        MyTeam.Helpers.MenuHelper.toggle_user_authenicated(response.id)
+        MyTeam.Helpers.NoticeHelper.success("Регистрация", "Добро пожаловать, регистрация прошла успешно!")
         Backbone.history.navigate("/teams", true)
-      else
-        @model.set({errors: $.parseJSON(resp.responseText)})
-    )
+      error: (response) ->
+        @model.set(errors: $.parseJSON(response.responseText))
   
   render: ->
     @$el.html(@template(@model.toJSON() ))

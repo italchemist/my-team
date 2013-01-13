@@ -6,14 +6,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-
-      build_resource
-      if resource.save
-         render :status => 200, :json => resource
-      else
-        render :json => resource.errors, :status => :unprocessable_entity
-      end
-
+    build_resource
+    if resource.save
+      render :status => 200, :json => resource
+    else
+      render :json => resource.errors, :status => :unprocessable_entity
+    end
   end
 
   def update

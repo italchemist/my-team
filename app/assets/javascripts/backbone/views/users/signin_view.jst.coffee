@@ -19,14 +19,19 @@ class MyTeam.Views.Users.SignInView extends Backbone.View
     e.stopPropagation()
     @model.unset("errors")
     
-    $.post('/api/users/sign_in', {user: @model.toJSON()}, (resp) ->
-      MyTeam.Helpers.MenuHelper.toggle_user_authenicated(resp.success)
-      if (resp.success)
-        Backbone.history.navigate("/teams", true)
-      else
-        @model.set({errors: $.parseJSON(resp.responseText)})
-    )
-  
+    $.ajax "/api/users/sign_in",
+      contentType: "application/json"
+      dataType: "json"
+      type: "POST"
+      data: JSON.stringify(user: @model.toJSON())
+      success: (response) ->
+        if (response.success)
+          MyTeam.Helpers.MenuHelper.toggle_user_authenicated(response.success)
+          MyTeam.Helpers.NoticeHelper.success("Авторизация", "Добро пожаловать!")
+          Backbone.history.navigate("/teams", true)
+      error: (response) ->
+        @model.set(errors: $.parseJSON(response.responseText))
+
   render: ->
     @$el.html(@template(@model.toJSON() ))
     this.$("form").backboneLink(@model)

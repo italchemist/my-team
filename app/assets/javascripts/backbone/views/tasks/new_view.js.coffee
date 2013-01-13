@@ -22,6 +22,7 @@ class MyTeam.Views.Tasks.NewView extends Backbone.View
       success: (task) =>
         @model = task
         Backbone.history.navigate("/teams/#{@team_id}/tasks", true);
+        MyTeam.Helpers.NoticeHelper.success("Задача", "Задача создана");
       error: (task, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
     )

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.pnotify.min
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone
@@ -21,6 +22,8 @@
 //= require_tree .
 
 $(function() {
+  $.pnotify.defaults.history = false;
+  
   $("a.btn").live("click", function(e) {
     e.preventDefault();
     href = $(this).attr("href");
@@ -39,6 +42,7 @@ $(function() {
     $.ajax({url:$(this).attr("href"), type:"delete"});
     MyTeam.Helpers.MenuHelper.toggle_user_authenicated(false)
     Backbone.history.navigate("/", true);
+    MyTeam.Helpers.NoticeHelper.success("Авторизация", "Вы успешно вышли!")
   });
 });
 
