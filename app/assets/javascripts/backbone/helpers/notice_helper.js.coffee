@@ -1,4 +1,7 @@
 class MyTeam.Helpers.NoticeHelper
+  @highlight: (selector) ->
+  	$(selector).effect("highlight", {}, 3000)
+
   @success: (title, text) ->
     @notice(title, text, "success")
 

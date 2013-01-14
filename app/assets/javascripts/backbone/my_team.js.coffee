@@ -27,6 +27,13 @@ window.MyTeam =
     
     Backbone.history.start(pushState: true)
 
+  get_task_comments: (team_id, task_id) ->
+    collection = new MyTeam.Collections.CommentsCollection()
+    collection.url = "/api/teams/#{team_id}/tasks/#{task_id}/comments"
+    collection.fetch()
+    collection
+
+  # gets team instance
   get_team: (team_id) ->
     team = @teams.get(team_id)
     unless team?

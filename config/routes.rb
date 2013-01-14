@@ -5,9 +5,10 @@ MyTeam::Application.routes.draw do
   #, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
   namespace "api" do
-    #devise_for :users
     resources "teams" do
-      resources "tasks"
+      resources "tasks" do 
+        resources "comments", :controller => "task_comments"
+      end
     end
   end
 
@@ -15,13 +16,13 @@ MyTeam::Application.routes.draw do
   match 'users/sign_in' => 'welcome#index'
 
   match 'teams' => 'welcome#index'
-  match 'teams/:id' => 'welcome#index'
-  match 'teams/:id/edit' => 'welcome#index'
-  match 'teams/:id/new' => 'welcome#index'
+  match 'teams/:team_id' => 'welcome#index'
+  match 'teams/:team_id/edit' => 'welcome#index'
+  match 'teams/:team_id/new' => 'welcome#index'
 
   match 'teams/:team_id/tasks' => 'welcome#index'
-  match 'teams/:team_id/tasks/:id' => 'welcome#index'
-  match 'teams/:team_id/tasks/:id/edit' => 'welcome#index'
+  match 'teams/:team_id/tasks/:task_id' => 'welcome#index'
+  match 'teams/:team_id/tasks/:task_id/edit' => 'welcome#index'
   match 'teams/:team_id/tasks/new' => 'welcome#index'
 
   root :to => 'welcome#index'

@@ -6,7 +6,7 @@ class Api::TeamsController < ApplicationController
   end
 
   def show
-  	respond_with Team.find(params[:id])
+  	respond_with Team.find(params[:team_id])
   end
 
   def create
@@ -14,11 +14,11 @@ class Api::TeamsController < ApplicationController
   end
 
   def update
-    respond_with Team.update(params[:id], params[:team].slice(:name, :description))
+    respond_with Team.update(params[:team_id], params[:team].slice(:name, :description))
   end
 
   def destroy
-    respond_with Team.destroy(params[:id])
+    respond_with Team.destroy(params[:team_id])
   end
 
   def team_url(team)

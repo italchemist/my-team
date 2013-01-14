@@ -25,6 +25,7 @@ gem "holder_rails"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 
+gem "acts_as_commentable", "3.0.1"
 gem "devise"
 gem "draper"
 gem "inherited_resources"
