@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113161121) do
+ActiveRecord::Schema.define(:version => 20130114082058) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(:version => 20130113161121) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "skills", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
@@ -61,5 +65,25 @@ ActiveRecord::Schema.define(:version => 20130113161121) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "vacancies", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "team_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "vacancies", ["team_id"], :name => "index_vacancies_on_team_id"
+
+  create_table "vacancy_skills", :force => true do |t|
+    t.integer  "vacancy_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "vacancy_skills", ["skill_id"], :name => "index_vacancy_skills_on_skill_id"
+  add_index "vacancy_skills", ["vacancy_id"], :name => "index_vacancy_skills_on_vacancy_id"
 
 end

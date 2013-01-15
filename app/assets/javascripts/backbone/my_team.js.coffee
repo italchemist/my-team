@@ -20,16 +20,27 @@ window.MyTeam =
 
     @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
 
+    @vacancies = {}
+
     new MyTeam.Routers.TeamsRouter
     new MyTeam.Routers.TasksRouter
     new MyTeam.Routers.WelcomeRouter
     new MyTeam.Routers.UsersRouter
+    new MyTeam.Routers.VacanciesRouter
     
     Backbone.history.start(pushState: true)
 
+  get_vacancies: (team_id, async = true) ->
+    collection = @vacancies[team_id]
+    unless collection?
+      collection     = new MyTeam.Collections.VacanciesCollection(null, { team_id: team_id })
+      @vacancies[team_id] = collection
+      collection.fetch async: async
+    collection
+
+  #
   get_task_comments: (team_id, task_id) ->
-    collection = new MyTeam.Collections.CommentsCollection()
-    collection.url = "/api/teams/#{team_id}/tasks/#{task_id}/comments"
+    collection = new MyTeam.Collections.CommentsCollection(null, { team_id: team_id, task_id: task_id})
     collection.fetch()
     collection
 

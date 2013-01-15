@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.effect-highlight
 //= require jquery.pnotify.min
+//= require textext
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone

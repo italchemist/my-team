@@ -18,7 +18,7 @@ class Api::TasksController < ApplicationController
   end
 
   def destroy
-    respond_with Task.where(:team_id => params[:team_id]).destroy(params[:task_id])
+    respond_with Task.where(:team_id => params[:team_id]).destroy(params[:id])
   end
 
   def task_url(task)

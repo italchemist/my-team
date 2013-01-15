@@ -7,7 +7,6 @@ class MyTeam.Helpers.MenuHelper
     else
       $("#menu-main-button-title").html("Команды")
 
-
     $("#menu-main-index").toggle(show)
     $("#menu-main-edit").toggle(show)
     $("#menu-main-index").attr("href", "/teams/#{team_id}")
@@ -18,6 +17,11 @@ class MyTeam.Helpers.MenuHelper
     $("#menu-tasks").toggle(show)
     $("#menu-tasks-list").attr("href", "/teams/#{team_id}/tasks")
     $("#menu-tasks-new").attr("href", "/teams/#{team_id}/tasks/new")
+
+    # Tasks menu for team
+    $("#menu-vacancies").toggle(show)
+    $("#menu-vacancies-list").attr("href", "/teams/#{team_id}/vacancies")
+    $("#menu-vacancies-new").attr("href", "/teams/#{team_id}/vacancies/new")
 
   @toggle_user_authenicated: (value) ->
   	$("#menu-users-signin").toggle(!value)

@@ -4,11 +4,15 @@ MyTeam::Application.routes.draw do
     :controllers => {:sessions => 'sessions', :registrations => "registrations"}
   #, :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
+  get 'api/vacancies/search/:skills' => 'api/vacancies#search'
   namespace "api" do
+    resources "skills"
     resources "teams" do
       resources "tasks" do 
         resources "comments", :controller => "task_comments"
       end
+
+      resources "vacancies"
     end
   end
 
@@ -20,10 +24,18 @@ MyTeam::Application.routes.draw do
   match 'teams/:team_id/edit' => 'welcome#index'
   match 'teams/:team_id/new' => 'welcome#index'
 
+  match 'vacancies' => 'welcome#index'
+  match 'vacancies/:vacancy_id' => 'welcome#index'
+
   match 'teams/:team_id/tasks' => 'welcome#index'
   match 'teams/:team_id/tasks/:task_id' => 'welcome#index'
   match 'teams/:team_id/tasks/:task_id/edit' => 'welcome#index'
   match 'teams/:team_id/tasks/new' => 'welcome#index'
+
+  match 'teams/:team_id/vacancies' => 'welcome#index'
+  match 'teams/:team_id/vacancies/:vacancy_id' => 'welcome#index'
+  match 'teams/:team_id/vacancies/:vacancy_id/edit' => 'welcome#index'
+  match 'teams/:team_id/vacancies/new' => 'welcome#index'
 
   root :to => 'welcome#index'
 
