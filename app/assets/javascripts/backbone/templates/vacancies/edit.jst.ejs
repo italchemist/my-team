@@ -1,0 +1,34 @@
+<form id="edit-vacancy" name="vacancy" class="form-horizontal">
+  <fieldset>
+    <legend>Редактирование вакансии</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="title">Заголовок</label>
+      <div class="controls">
+        <input type="text" id="title" name="title" placeholder="Заголовок вакансии" value="<%= title %>">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="description">Описание</label>
+      <div class="controls">
+        <textarea type="text" id="description" name="description" placeholder="Описание вакансии"><%= description %></textarea>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="skills">Умения</label>
+      <div class="controls">
+        <textarea id="skills" rows="1" style="width:200px;"></textarea>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a href="#" class="btn bck">Отмена</a>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>

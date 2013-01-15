@@ -2,15 +2,15 @@ class Api::TeamsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Team.all
+    render json: Team.all.map { |t| to_json(t) }
   end
 
   def show
-  	respond_with Team.find(params[:team_id])
+  	render json: Team.find(params[:team_id]).map { |t| to_json(t) }
   end
 
   def create
-    respond_with Team.create(params[:team].slice(:name, :description))
+    render json: to_json(Team.create(params[:team]))
   end
 
   def update
@@ -23,5 +23,9 @@ class Api::TeamsController < ApplicationController
 
   def team_url(team)
     "/teams/#{team.id}"
+  end
+
+  def to_json(t)
+    { id: t.id, name: t.name, description: t.description }
   end
 end

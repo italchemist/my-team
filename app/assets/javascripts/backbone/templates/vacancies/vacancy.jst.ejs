@@ -1,0 +1,14 @@
+<td>
+  <a href="/teams/<%=model.team_id%>/vacancies/<%=model.id%>" class="lnk"><%= model.title %></a>
+  <% if (show_skills_as == "column") { %>
+    <% for(var skill in model.skills) { %> 
+      <span class="label"><%= model.skills[skill] %></span>
+    <% } %>
+  <% } %>
+</td>
+
+<% if (show_description_as == "column") { %>
+  <td>
+    <%= model.description %>
+  </td>
+<% } %>

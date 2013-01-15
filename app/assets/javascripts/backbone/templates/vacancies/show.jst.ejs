@@ -1,0 +1,22 @@
+<legend>
+  <%= title %> 
+  <% if (false) { %><span class="label label-inverse">закрыта</span><% } %>
+  <div class="btn-group" style="float:right">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Действия <span class="caret"></span>
+    </a>
+
+    <a href="#" class="btn bck">Назад</a>
+    
+    <ul class="dropdown-menu">
+      <li><a href="/teams/<%= team_id %>/vacancies/<%= id %>/edit" class="lnk">Редактировать</a></li>
+      <li><a href="/teams/<%= team_id %>/vacancies/<%= id %>/destroy" class="destroy">Удалить</a></li>
+    </ul>
+  </div>
+</legend>
+
+<p>
+  <%= description %>
+</p>
+
+<div id="comments"></div>
