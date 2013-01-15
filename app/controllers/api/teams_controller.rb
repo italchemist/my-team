@@ -6,19 +6,19 @@ class Api::TeamsController < ApplicationController
   end
 
   def show
-  	render json: Team.find(params[:team_id]).map { |t| to_json(t) }
+  	render json: to_json(Team.find_by_id(id))
   end
 
   def create
-    render json: to_json(Team.create(params[:team]))
+    render json: to_json(Team.create(data))
   end
 
   def update
-    respond_with Team.update(params[:id], params[:team].slice(:name, :description))
+    render json: to_json(Team.update(id, data))
   end
 
   def destroy
-    respond_with Team.destroy(params[:id])
+    respond_with Team.destroy(id)
   end
 
   def team_url(team)
@@ -27,5 +27,13 @@ class Api::TeamsController < ApplicationController
 
   def to_json(t)
     { id: t.id, name: t.name, description: t.description }
+  end
+
+  def id
+    params[:id]
+  end
+
+  def data
+    params[:team].slice(:id, :name, :description)
   end
 end
