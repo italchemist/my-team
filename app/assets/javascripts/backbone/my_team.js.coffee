@@ -22,7 +22,7 @@ window.MyTeam =
 
     @vacancies = {}
     @vacancies[@team_id] = new MyTeam.Collections.VacanciesCollection(null, {team_id: @team_id})
-    @vacancies[@team_id].reset $("#page").data("tasks")
+    @vacancies[@team_id].reset $("#page").data("vacancies")
 
     @members = {}
 

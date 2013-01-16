@@ -8,11 +8,14 @@ class MyTeam.Views.Teams.ShowView extends Backbone.View
     team_id   = @model.get("id")
     tasks     = app.get_tasks(team_id)
     vacancies = app.get_vacancies(team_id)
+    members   = app.get_members(team_id)
     task_view = new MyTeam.Views.Tasks.IndexView({tasks: tasks, show_header: false, show_description_as: "popover"})
     vacancies_view = new MyTeam.Views.Vacancies.IndexView({vacancies: vacancies, show_header: false, show_description_as: "popover", show_skills_as: "none"})
+    members_view   = new MyTeam.Views.Members.IndexView({members: members, show_header: false, show_description_as: "popover", show_skills_as: "none"})
     
     @$el.html(@template({team:@model.toJSON()}))
     @$("#tasks").append(task_view.render().el)
     @$("#vacancies").append(vacancies_view.render().el)
+    @$("#members").append(members_view.render().el)
 
     return this
