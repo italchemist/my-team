@@ -13,14 +13,22 @@ window.MyTeam =
   Helpers: {}
   initialize: (party_id, activities, parties) ->
     @team_id = $("#page").data("team-id")
+    @task_id = $("#page").data("task-id")
 
     @tasks = {}
     @tasks[@team_id] = new MyTeam.Collections.TasksCollection(null, {team_id: @team_id})
     @tasks[@team_id].reset $("#page").data("tasks")
 
-    @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
-
     @vacancies = {}
+    @vacancies[@team_id] = new MyTeam.Collections.VacanciesCollection(null, {team_id: @team_id})
+    @vacancies[@team_id].reset $("#page").data("tasks")
+
+    @task_comments = {}
+    @task_comments[@team_id] = {}
+    @task_comments[@team_id][@task_id] = new MyTeam.Collections.CommentsCollection(null, { team_id: @team_id, task_id: @task_id })
+    @task_comments[@team_id][@task_id].reset $("#page").data("comments")
+
+    @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
 
     new MyTeam.Routers.TeamsRouter
     new MyTeam.Routers.TasksRouter
@@ -33,15 +41,20 @@ window.MyTeam =
   get_vacancies: (team_id, async = true) ->
     collection = @vacancies[team_id]
     unless collection?
-      collection     = new MyTeam.Collections.VacanciesCollection(null, { team_id: team_id })
+      collection = new MyTeam.Collections.VacanciesCollection(null, { team_id: team_id })
       @vacancies[team_id] = collection
       collection.fetch async: async
     collection
 
   #
-  get_task_comments: (team_id, task_id) ->
-    collection = new MyTeam.Collections.CommentsCollection(null, { team_id: team_id, task_id: task_id})
-    collection.fetch()
+  get_task_comments: (team_id, task_id, async) ->
+    collection = @task_comments[team_id]
+    @task_comments[team_id] = {} unless collection?
+    collection = @task_comments[team_id][task_id]
+    unless collection?
+      collection = new MyTeam.Collections.CommentsCollection(null, { team_id: team_id, task_id: task_id })
+      @task_comments[team_id][task_id] = collection
+      collection.fetch async: async
     collection
 
   # gets team instance

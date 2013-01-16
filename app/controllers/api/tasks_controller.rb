@@ -1,27 +1,46 @@
-class Api::TasksController < ApplicationController
+class Api::TasksController < Api::ApiController
   respond_to :json
 
   def index
-    respond_with Task.where(:team_id => params[:team_id]).all
+    render json: collection.map { |t| to_json(t) }
   end
 
   def show
-  	respond_with Task.where(:team_id => params[:team_id]).find(params[:task_id])
+    render json: to_json(collection.find_by_id(id))
   end
 
   def create
-    respond_with Task.where(:team_id => params[:team_id]).create(params[:task].slice(:title, :description, :closed))
+    # todo: 28,29 команда должна существовать
+    render json: to_json(Task.create(data))
   end
 
   def update
-    respond_with Task.where(:team_id => params[:team_id]).update(params[:task_id], params[:task].slice(:title, :description, :closed))
+    # todo: 33 обновлять данные может только участник команды
+    render json: to_json(Task.update(id, data))
   end
 
   def destroy
-    respond_with Task.where(:team_id => params[:team_id]).destroy(params[:id])
+    # todo: 34 удалять может только участник
+    respond_with Task.destroy(id)
   end
 
   def task_url(task)
     "/tasks/#{task.team_id}/#{task.id}"
+  end
+
+  def id
+    params[:id]
+  end
+
+  def collection
+    Task.where(:team_id => params[:team_id])
+  end
+
+  def to_json(t)
+    { id: t.id, title: t.title, description: t.description }
+  end  
+
+  def data
+    params[:task].slice(:title, :description, :closed).merge(team_id: params[:team_id])
   end
 end

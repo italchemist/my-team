@@ -10,14 +10,17 @@ class Api::TeamsController < ApplicationController
   end
 
   def create
+    #todo: 32
     render json: to_json(Team.create(data))
   end
 
   def update
+    #todo: 31
     render json: to_json(Team.update(id, data))
   end
 
   def destroy
+    #todo: #30
     respond_with Team.destroy(id)
   end
 
@@ -34,6 +37,6 @@ class Api::TeamsController < ApplicationController
   end
 
   def data
-    params[:team].slice(:id, :name, :description)
+    params[:team].slice(:name, :description)
   end
 end
