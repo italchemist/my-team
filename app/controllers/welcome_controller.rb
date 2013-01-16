@@ -23,5 +23,6 @@ class WelcomeController < ApplicationController
 
     @team_id = params[:team_id]
     @task_id = params[:task_id]
+    @user = current_user
   end
 end

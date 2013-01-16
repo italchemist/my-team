@@ -1,7 +1,7 @@
-MyTeam.Views.Tasks ||= {}
+MyTeam.Views.Members ||= {}
 
-class MyTeam.Views.Tasks.TaskView extends Backbone.View
-  template: JST["backbone/templates/tasks/task"]
+class MyTeam.Views.Members.MemberView extends Backbone.View
+  template: JST["backbone/templates/members/member"]
 
   tagName: "tr"
 

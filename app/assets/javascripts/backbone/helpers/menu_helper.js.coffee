@@ -23,6 +23,10 @@ class MyTeam.Helpers.MenuHelper
     $("#menu-vacancies-list").attr("href", "/teams/#{team_id}/vacancies")
     $("#menu-vacancies-new").attr("href", "/teams/#{team_id}/vacancies/new")
 
+    # Tasks menu for members
+    $("#menu-members").toggle(show)
+    $("#menu-members-list").attr("href", "/teams/#{team_id}/members")
+
   @toggle_user_authenicated: (value) ->
   	$("#menu-users-signin").toggle(!value)
   	$("#menu-users-signup").toggle(!value)

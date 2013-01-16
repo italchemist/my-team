@@ -7,7 +7,13 @@
     <div class="span8">
       <div id="description">
       	<legend>Описание</legend>
-		    <%= team.description %>
+		    <p>
+          <%= team.description %>
+        </p>
+        
+        <p>
+          <a href="/teams/<%=team.id%>/members/join" class="btn btn-primary btn-large">Вступить</a>
+        </p>
       </div>
     </div>
 

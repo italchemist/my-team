@@ -1,0 +1,14 @@
+<legend>Участники</legend>
+
+<table id="members-table" class="table table-striped">
+  <% if (show_header) { %>
+  <tr>
+    <th>Участник</th>
+    <% if (show_description_as == "column") { %>
+    	<th>Описание</th>
+    <% } %>
+  </tr>
+  <% } else { %>
+  	<tbody></tbody>
+  <% } %>
+</table>

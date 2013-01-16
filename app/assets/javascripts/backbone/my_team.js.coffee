@@ -14,6 +14,7 @@ window.MyTeam =
   initialize: (party_id, activities, parties) ->
     @team_id = $("#page").data("team-id")
     @task_id = $("#page").data("task-id")
+    @user    = $("#page").data("user")
 
     @tasks = {}
     @tasks[@team_id] = new MyTeam.Collections.TasksCollection(null, {team_id: @team_id})
@@ -22,6 +23,8 @@ window.MyTeam =
     @vacancies = {}
     @vacancies[@team_id] = new MyTeam.Collections.VacanciesCollection(null, {team_id: @team_id})
     @vacancies[@team_id].reset $("#page").data("tasks")
+
+    @members = {}
 
     @task_comments = {}
     @task_comments[@team_id] = {}
@@ -35,14 +38,30 @@ window.MyTeam =
     new MyTeam.Routers.WelcomeRouter
     new MyTeam.Routers.UsersRouter
     new MyTeam.Routers.VacanciesRouter
+    new MyTeam.Routers.MembersRouter
     
     Backbone.history.start(pushState: true)
+
+  get_current_user: ->
+    @user
+
+  get_current_team: ->
+    @get_team(@team_id)
 
   get_vacancies: (team_id, async = true) ->
     collection = @vacancies[team_id]
     unless collection?
       collection = new MyTeam.Collections.VacanciesCollection(null, { team_id: team_id })
       @vacancies[team_id] = collection
+      collection.fetch async: async
+    collection
+
+  # returns task collection for specified team id
+  get_members: (team_id, async = true) ->
+    collection = @members[team_id]
+    unless collection?
+      collection      = new MyTeam.Collections.MembersCollection(null, { team_id: team_id })
+      @members[team_id] = collection
       collection.fetch async: async
     collection
 
