@@ -7,6 +7,7 @@ MyTeam::Application.routes.draw do
   get 'api/vacancies/search/:skills' => 'api/vacancies#search'
   post 'api/teams/:team_id/members/join' => 'api/members#join'
   post 'api/teams/:team_id/members/dismiss' => 'api/members#dismiss'
+  post 'api/users/update_account' => 'api/users#update_account'
 
   namespace "api" do
     resources "skills"
@@ -20,6 +21,7 @@ MyTeam::Application.routes.draw do
     end
   end
 
+  match 'users/account' => 'welcome#index'
   match 'users/sign_up' => 'welcome#index'
   match 'users/sign_in' => 'welcome#index'
 

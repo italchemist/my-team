@@ -17,10 +17,11 @@ class Api::MembersController < Api::ApiController
   end  
 
   def collection
+    # todo: include user to avoid n+1
     Membership.where(:team_id => params[:team_id])
   end
 
   def to_json(t)
-    { user_id: t.user.id, email: t.user.email }
+    { user_id: t.user.id, email: t.user.email, name: t.user.name }
   end  
 end

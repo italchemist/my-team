@@ -28,6 +28,7 @@ class MyTeam.Helpers.MenuHelper
     $("#menu-members-list").attr("href", "/teams/#{team_id}/members")
 
   @toggle_user_authenicated: (value) ->
-  	$("#menu-users-signin").toggle(!value)
-  	$("#menu-users-signup").toggle(!value)
-  	$("#menu-users-signout").toggle(value)
+    $("#menu-users-signin").toggle(!value)
+    $("#menu-users-signup").toggle(!value)
+    $("#menu-users-account").toggle(value)
+    $("#menu-users-signout").toggle(value)

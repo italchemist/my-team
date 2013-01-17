@@ -1,5 +1,6 @@
 class MyTeam.Routers.UsersRouter extends Backbone.Router
   routes:
+    "users/account": "account"
     "users/sign_up": "sign_up"
     "users/sign_in": "sign_in"
 
@@ -17,6 +18,9 @@ class MyTeam.Routers.UsersRouter extends Backbone.Router
 
   sign_in: ->
     @render new MyTeam.Views.Users.SignInView(collection: @users)
+
+  account: ->
+    @render new MyTeam.Views.Users.AccountView()
 
   render: (view) ->
     @page.html(view.render().el)

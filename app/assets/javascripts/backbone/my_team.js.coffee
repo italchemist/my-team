@@ -14,7 +14,7 @@ window.MyTeam =
   initialize: (party_id, activities, parties) ->
     @team_id = $("#page").data("team-id")
     @task_id = $("#page").data("task-id")
-    @user    = $("#page").data("user")
+    @user    = new MyTeam.Models.User($("#page").data("user"))
 
     @tasks = {}
     @tasks[@team_id] = new MyTeam.Collections.TasksCollection(null, {team_id: @team_id})
@@ -32,6 +32,8 @@ window.MyTeam =
     @task_comments[@team_id][@task_id].reset $("#page").data("comments")
 
     @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
+
+    MyTeam.Helpers.MenuHelper.toggle_user_authenicated(@user?, @team_id) if @team_id?
 
     new MyTeam.Routers.TeamsRouter
     new MyTeam.Routers.TasksRouter
