@@ -4,6 +4,7 @@ class MyTeam.Routers.WelcomeRouter extends Backbone.Router
     "/": "index"
 
   initialize: () ->
+    @view = MyTeam.Helpers.ViewHelper
     @menu = MyTeam.Helpers.MenuHelper
     @page = $("#page")
     @on("all", @change)
@@ -15,4 +16,5 @@ class MyTeam.Routers.WelcomeRouter extends Backbone.Router
     @render new MyTeam.Views.Welcome.IndexView()
 
   render: (view) ->
-    @page.html(view.render().el)
+    @page.html view.render().el
+    @view.fix_thumbnails()

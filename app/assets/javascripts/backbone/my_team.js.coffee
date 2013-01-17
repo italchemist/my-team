@@ -47,6 +47,10 @@ window.MyTeam =
     
     Backbone.history.start(pushState: true)
 
+  get_popular_teams: () ->
+    # todo
+    new MyTeam.Collections.TeamsCollection(@get_teams().take(3))
+
   set_current_user: (user) ->
     @user = user
 
