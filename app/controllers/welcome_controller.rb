@@ -14,6 +14,10 @@ class WelcomeController < ApplicationController
       @vacancies = Vacancy.where(:team_id => params[:team_id]).map { |v| 
         { id: v.id, title: v.title, description: v.description } 
       }
+      # todo: avoid n+1 use da include
+      @members = Membership.where(:team_id => params[:team_id]).map { |m| 
+        { user_id: m.user.id, name: m.user.name, email: m.user.email } 
+      }      
 
       if params[:task_id]
         task = tasks.detect { |t| t.id.to_s == params[:task_id] }

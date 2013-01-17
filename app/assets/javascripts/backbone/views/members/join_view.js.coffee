@@ -6,9 +6,6 @@ class MyTeam.Views.Members.JoinView extends Backbone.View
   events:
     "click #join": "join"
 
-  initialize: () ->
-    @model = MyTeam.get_current_team()
-
   join: (e) =>
     e.preventDefault()
     e.stopPropagation()
@@ -19,8 +16,9 @@ class MyTeam.Views.Members.JoinView extends Backbone.View
       contentType: "application/json"
       dataType: "json"
       type: "POST"
-      data: {}
+      data: null
       success: (response) ->
+        MyTeam.get_members(team_id).add(MyTeam.get_current_user())
         MyTeam.Helpers.MenuHelper.toggle_user_authenicated(response.id)
         MyTeam.Helpers.NoticeHelper.success("Команда", "Вы успешно вступили в команду!")
         Backbone.history.navigate("/teams/#{team_id}", true)

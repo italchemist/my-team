@@ -14,16 +14,19 @@ class MyTeam.Views.Users.AccountView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
     @model.unset("errors")
-    
+
     $.ajax "/api/users/update_account",
       contentType: "application/json"
       dataType: "json"
       type: "POST"
-      data: JSON.stringify({ id: @model.id, name: $("#name").val() })
+      data: JSON.stringify(@get_account_data())
       success: (response) ->
         MyTeam.Helpers.NoticeHelper.success("Аккаунт", "Данные обновлены")
       error: (response) ->
         @model.set(errors: $.parseJSON(response.responseText))
+
+  get_account_data: ->
+    { id: @model.id, name: $("#name").val(), password: $("#new-password").val() }
 
   render: ->
     @$el.html(@template(@model.toJSON()))

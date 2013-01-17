@@ -22,9 +22,12 @@ class MyTeam.Views.Users.SignUpView extends Backbone.View
       type: "POST"
       data: JSON.stringify(user: @model.toJSON())
       success: (response) ->
-        MyTeam.Helpers.MenuHelper.toggle_user_authenicated(response.id)
-        MyTeam.Helpers.NoticeHelper.success("Регистрация", "Добро пожаловать, регистрация прошла успешно!")
-        Backbone.history.navigate("/teams", true)
+        if response.success
+          user = response.user
+          MyTeam.set_current_user(new MyTeam.Models.User(user))
+          MyTeam.Helpers.MenuHelper.toggle_user_authenicated(true)
+          MyTeam.Helpers.NoticeHelper.success("Регистрация", "Добро пожаловать, регистрация прошла успешно!")
+          Backbone.history.navigate("/teams", true)
       error: (response) ->
         @model.set(errors: $.parseJSON(response.responseText))
   

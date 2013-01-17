@@ -9,10 +9,7 @@ class MyTeam.Views.Users.SignInView extends Backbone.View
   constructor: (options) ->
     super(options)
     @model = new @collection.model()
-
-    @model.bind("change:errors", () =>
-      this.render()
-    )
+    @model.bind("change:errors", () => this.render())
 
   save: (e) ->
     e.preventDefault()
@@ -25,9 +22,11 @@ class MyTeam.Views.Users.SignInView extends Backbone.View
       type: "POST"
       data: JSON.stringify(user: @model.toJSON())
       success: (response) ->
-        if (response.success)
-          MyTeam.Helpers.MenuHelper.toggle_user_authenicated(response.success)
-          MyTeam.Helpers.NoticeHelper.success("Авторизация", "Добро пожаловать!")
+        if response.success
+          user = response.user
+          MyTeam.set_current_user(new MyTeam.Models.User(user))
+          MyTeam.Helpers.MenuHelper.toggle_user_authenicated(true)
+          MyTeam.Helpers.NoticeHelper.success("Авторизация", "Добро пожаловать, #{user.name}!")
           Backbone.history.navigate("/teams", true)
       error: (response) ->
         @model.set(errors: $.parseJSON(response.responseText))

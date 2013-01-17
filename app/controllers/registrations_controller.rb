@@ -8,7 +8,8 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
     if resource.save
-      render :status => 200, :json => resource
+      # todo: Авторизовать пользователя сразу после регистрации
+      render :status => 200, :json => { :success => true, :user => resource }
     else
       render :json => resource.errors, :status => :unprocessable_entity
     end

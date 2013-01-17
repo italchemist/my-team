@@ -19,7 +19,7 @@ class MyTeam.Routers.MembersRouter extends Backbone.Router
     @render new MyTeam.Views.Members.IndexView(members: @app.get_members(team_id))
 
   join: (team_id) ->
-    @render new MyTeam.Views.Members.JoinView(model: MyTeam.get_team(team_id))    
+    @render new MyTeam.Views.Members.JoinView(model: MyTeam.get_team(team_id))
 
   edit: (team_id, id) ->
     member = @app.get_members(team_id, false).detect (m) -> 

@@ -14,7 +14,7 @@ window.MyTeam =
   initialize: (party_id, activities, parties) ->
     @team_id = $("#page").data("team-id")
     @task_id = $("#page").data("task-id")
-    @user    = new MyTeam.Models.User($("#page").data("user"))
+    @user    = new MyTeam.Models.User($("#page").data("user")) if $("#page").data("user")?
 
     @tasks = {}
     @tasks[@team_id] = new MyTeam.Collections.TasksCollection(null, {team_id: @team_id})
@@ -25,6 +25,8 @@ window.MyTeam =
     @vacancies[@team_id].reset $("#page").data("vacancies")
 
     @members = {}
+    @members[@team_id] = new MyTeam.Collections.MembersCollection(null, {team_id: @team_id})
+    @members[@team_id].reset $("#page").data("members")
 
     @task_comments = {}
     @task_comments[@team_id] = {}
@@ -33,7 +35,8 @@ window.MyTeam =
 
     @teams = new MyTeam.Collections.TeamsCollection($("#page").data("teams"))
 
-    MyTeam.Helpers.MenuHelper.toggle_user_authenicated(@user?, @team_id) if @team_id?
+    MyTeam.Helpers.MenuHelper.toggle_user_authenicated(@user?)
+    MyTeam.Helpers.MenuHelper.toggle_team_menus(@team_id?, @team_id)
 
     new MyTeam.Routers.TeamsRouter
     new MyTeam.Routers.TasksRouter
@@ -44,11 +47,14 @@ window.MyTeam =
     
     Backbone.history.start(pushState: true)
 
+  set_current_user: (user) ->
+    @user = user
+
   get_current_user: ->
     @user
 
-  get_current_team: ->
-    @get_team(@team_id)
+#  get_current_team: ->
+#    @get_team(@team_id)
 
   get_vacancies: (team_id, async = true) ->
     collection = @vacancies[team_id]

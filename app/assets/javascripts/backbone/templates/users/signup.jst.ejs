@@ -1,6 +1,13 @@
 <form id="new-user" name="user" class="form-horizontal">
   <fieldset>
     <legend>Регистрация</legend>
+
+    <div class="control-group">
+      <label class="control-label" for="name">Имя</label>
+      <div class="controls">
+        <input type="text" id="name" name="name" placeholder="Имя" value="<%= name %>">
+      </div>
+    </div>
     
     <div class="control-group">
       <label class="control-label" for="email">EMail</label>
