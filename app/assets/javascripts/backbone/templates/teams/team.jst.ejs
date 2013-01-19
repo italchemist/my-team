@@ -1,8 +1,11 @@
-<a href="/teams/<%=id%>" class="lnk">
-  <div class="thumbnail" style="position:relative">
-    <img src="http://lorempixel.com/400/200/<%=['abstract', 'food', 'people', 'technics', 'anials', 'nightmare', 'nature', 'transport', 'city', 'fashion', 'sports'][Math.floor(11*Math.random())]%>/<%=Math.round(Math.random()*10)%>" width="400" height="200"/>
+<a href="/teams/<%=id%>" class="lnk team-badge">
+  <div style="position:relative;overflow:hidden">
+    <img src="http://lorempixel.com/400/200/<%=['abstract', 'food', 'people', 'technics', 'anials', 'nightmare', 'nature', 'transport', 'city', 'fashion', 'sports'][Math.floor(11*Math.random())]%>/<%=Math.round(Math.random()*10)%>" width="400" height="200" class="img-polaroid" style="width:400px;height:200px;"/>
     <div class="team-thumbnail-name">
-    	<%=name%>
+      <%=name%>
+    </div>
+    <div class="team-thumbnail-description" style="top:200px">
+      <%=description%>
     </div>
   </div>
 </a>

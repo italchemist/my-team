@@ -1,0 +1,15 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "укажите имя"
+            email:
+              blank: "укажите почту"
+              invalid: "email некорректен"
+              taken: "уже используется"
+            password:
+              blank: "укажите пароль"
+              too_short: "слишком короткий"

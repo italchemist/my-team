@@ -1,6 +1,8 @@
 <form id="new-session" name="user" class="form-horizontal">
   <fieldset>
     <legend>Авториация</legend>
+
+    <div id="signin-failed" class="alert alert-error hide">Ошибка авторизации. Проверьте правильность ввода логина и пароля.</div>
     
     <div class="control-group">
       <label class="control-label" for="email">EMail</label>
@@ -12,14 +14,13 @@
     <div class="control-group">
       <label class="control-label" for="password">Пароль</label>
       <div class="controls">
-        <input type="text" id="password" name="password" placeholder="Пароль" value="<%= password %>">
+        <input type="password" id="password" name="password" placeholder="Пароль" value="<%= password %>">
       </div>
     </div>    
 
     <div class="control-group">
       <div class="controls">
-        <a href="/" class="btn btn-danger">Отмена</a>
-        <button type="submit" class="btn btn-primary">Войти</button>
+        <button id="signin" type="submit" class="btn btn-primary" data-loading-text="Войти">Войти</button>
       </div>
     </div>
 

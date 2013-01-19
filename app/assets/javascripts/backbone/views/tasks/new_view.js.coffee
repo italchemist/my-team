@@ -17,6 +17,8 @@ class MyTeam.Views.Tasks.NewView extends Backbone.View
     e.preventDefault()
     e.stopPropagation()
 
+    alert @team_id
+
     @model.unset("errors")
     @collection.create(@model.toJSON(),
       success: (task) =>

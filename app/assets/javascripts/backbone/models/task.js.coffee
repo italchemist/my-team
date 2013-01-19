@@ -7,7 +7,7 @@ class MyTeam.Models.Task extends Backbone.Model
   parse: (r) ->
     m = super r
     url = @url?() ? @url
-    m.team_id = (/\/api\/teams\/(\d)/i.exec url)[1]
+    m.team_id = (/\/api\/teams\/(\d*)/i.exec url)[1]
     m
 
   defaults:

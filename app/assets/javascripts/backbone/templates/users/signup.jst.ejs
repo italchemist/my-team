@@ -2,31 +2,35 @@
   <fieldset>
     <legend>Регистрация</legend>
 
-    <div class="control-group">
+    <div id="signup-failed" class="alert alert-error hide">Ошибка регистрации. Исправьте ошибки и повторите попытку.</div>
+
+    <div class="control-group" id="name-grp">
       <label class="control-label" for="name">Имя</label>
       <div class="controls">
         <input type="text" id="name" name="name" placeholder="Имя" value="<%= name %>">
+        <span id="name-msg" class="help-inline"></span>
       </div>
     </div>
     
-    <div class="control-group">
+    <div class="control-group" id="email-grp">
       <label class="control-label" for="email">EMail</label>
       <div class="controls">
         <input type="text" id="email" name="email" placeholder="EMail" value="<%= email %>">
+        <span id="email-msg" class="help-inline"></span>
       </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" id="password-grp">
       <label class="control-label" for="password">Пароль</label>
       <div class="controls">
         <input type="text" id="password" name="password" placeholder="Пароль" value="<%= password %>">
+        <span id="password-msg" class="help-inline"></span>
       </div>
     </div>    
 
     <div class="control-group">
       <div class="controls">
-        <a href="/" class="btn btn-danger">Отмена</a>
-        <button type="submit" class="btn btn-primary">Регистрация</button>
+        <button id="signup" type="submit" class="btn btn-primary" data-loading-text="Регистрация">Регистрация</button>
       </div>
     </div>
 
